@@ -11,4 +11,6 @@ const tripSchema = new mongoose.Schema({
     image: { type: String, required: true, index: true },
     description: { type: String, required: true, index: true }
 });
-mongoose.model('Trip', tripSchema);
+
+// Export the model
+module.exports = mongoose.model('trips', tripSchema);
