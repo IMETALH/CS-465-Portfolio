@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>Dive Sites - Bhaccasyoniztas Beach Resort Website Template</title>
+	<title>{{title}}</title>
 	<link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
@@ -20,7 +20,7 @@
 							<ul id="sites">
 								{{#each trips}}
 								<li>
-									<a href="/travel"><img src="images/{{this.image}}" alt="Img"></a>
+									<a href="/api/trips/{{this.code}}"><img src="images/{{this.image}}" alt="Img"></a>
 									<h2><a href="/travel">{{this.name}}</a></h2>
 									{{{this.description}}}
 								</li>
@@ -34,5 +34,6 @@
 		{{> footer}}
 	</div>
 </body>
+
 
 </html>
