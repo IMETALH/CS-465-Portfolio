@@ -4,7 +4,7 @@ let dbURL = `mongodb://${host}/travlr`;
 const readLine = require('readline');
 
 if (process.env.NODE_ENV === 'production') {
-    dbURL = process.env.MONGODB_URI || dbURL;
+    dbURL = process.env.MONGODB_URI || dbURL; // correction here, come to this, kennedy!
 }
 
 const connect = () => {
@@ -64,4 +64,6 @@ process.on('SIGTERM', () => {
 
 connect();
 
+// bring in the Mongoose schema
 require('./travlr');
+require('./user');
