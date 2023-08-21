@@ -37,7 +37,7 @@ JavaScript is a versatile programming language used primarily for creating inter
 
 Code Refactoring for Improved Efficiency: Some API endpoint is being called multiple times with similar parameters, leading to redundant data retrieval and slowing down the application. I refactored the code to implement caching for the API responses. I used a caching library to store the fetched data temporarily and retrieve it from the cache when the same request is made again within a certain timeframe. I also refactored the function into smaller, more focused functions with descriptive names. Each subtask is encapsulated within a separate function.
 
-## Testing:
+## Testing: API Testing and Security Challenges:
 Methods and Endpoints: An API defines how different software components or systems communicate with each other.
 Methods (HTTP Verbs):
 HTTP methods, also known as HTTP verbs, define the type of operation that a client wants to perform on a resource. Common HTTP methods include:
@@ -46,7 +46,6 @@ POST: Send data to the server to create a new resource.
 PUT: Update an existing resource on the server.
 DELETE: Delete a resource on the server.
 
-## API Testing and Security Challenges:
 Unit Testing: Tested individual API methods to ensure they behave as expected. For example, test that a "POST" request to a certain endpoint creates a new resource.
 
 Integration Testing:
