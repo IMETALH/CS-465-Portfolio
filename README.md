@@ -3,14 +3,15 @@ CS-465 Full Stack Development with MEAN
 
 
 ## Architecture:
-Frontend development technology used in the full stack project includes Express HTML, CSS, JavaScript, and the single-page application (SPA).
-Express HTML vs. JavaScript:
+Frontend development technology used in the full stack project includes Express HTML, CSS, JavaScript, and the single-page application (SPA
+
+### Express HTML vs. JavaScript:
 
 Express HTML focuses on server-side rendering and content structure.
 JavaScript focuses on client-side interactivity, dynamic updates, and asynchronous data handling.
 They worked together, with Express rendering initial content and JavaScript enhancing user interaction.
 
-JavaScript vs. Single-Page Application (SPA):
+### JavaScript vs. Single-Page Application (SPA):
 JavaScript and SPAs.
 SPAs take JavaScript usage further by creating a seamless user experience without full page reloads.
 SPAs rely heavily on JavaScript frameworks to manage complex UI components and handle dynamic updates.
