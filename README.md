@@ -1,9 +1,9 @@
 # cs465-fullstack
-CS-465 Full Stack Development with MEAN
+CS-465 Full Stack Development with MEAN Stack
 
 
 ## Architecture
-Frontend development technology used in the full stack project includes Express HTML, CSS, JavaScript, and the single-page application (SPA)
+The frontend development technology stack used in the full stack project includes Express HTML, Angular, JavaScript, MongoDB, and the single-page application (SPA)
 
 ### Express HTML vs. JavaScript
 
