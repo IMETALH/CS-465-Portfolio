@@ -8,7 +8,7 @@ The frontend development technology stack used in the full stack project include
 ### Express HTML vs. JavaScript
 
 Express HTML focuses on server-side rendering and content structure.
-JavaScript focuses on client-side interactivity, dynamic updates, and asynchronous data handling.
+JavaScript focuses on client-side interactivity, dynamic updates, and asynchronous data handling..
 They worked together, with Express rendering initial content and JavaScript enhancing user interaction.
 
 ### JavaScript vs. Single-Page Application (SPA)
