@@ -6,11 +6,13 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const passport = require('passport');
+
 // include reference to handlebars code
 const hbs = require('hbs');
+
 // set up database connection
 require('./app_api/models/db');
-
+// set up passport
 require('./app_api/config/passport');
 
 // set up routers
@@ -41,12 +43,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 
 // allow CORS
-app.use('/api', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requesteed-With, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  next();
-});
+app.use('/api', (req, res, next) => 
+  {
+    res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requesteed-With, Content-Type, Accept, Authorization');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    next();
+  });
 
 // use routers for specific URLs
 app.use('/', indexRouter);

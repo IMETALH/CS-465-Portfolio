@@ -2,17 +2,21 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('users');
 
-const register = (req, res) => {
-    if (!req.body.name || !req.body.email || !req.body.password) {
-        return res
-            .status(400)
-            .json({ "message": "All fields required" });
+const register = (req, res) =>   
+    // If any of the required fields are missing, return an error message
+    {
+        if (!req.body.name || !req.body.email || !req.body.password) {
+            return res
+                .status(400)
+                .json({ "message": "All fields required" });
     }
-
+    // Create a new user object
     const user = new User();
     user.name = req.body.name;
     user.email = req.body.email;
     user.setPassword(req.body.password);
+    
+    // Save the user object to the database
     user.save((err) => {
         if (err) {
             res
@@ -28,11 +32,14 @@ const register = (req, res) => {
 };
 
 const login = (req, res) => {
+    // If any of the required fields are missing, return an error message
     if (!req.body.email || !req.body.password) {
         return res
             .status(400)
             .json({ "message": "All fields required" });
     }
+
+    // Use passport to authenticate the user
     passport.authenticate('local', (err, user, info) => {
         if (err) {
             return res
