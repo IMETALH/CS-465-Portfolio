@@ -1,7 +1,11 @@
+const packageJson = require('../../package.json');
+
+/* GET home page. */
 const index = (req, res) => {
-    res.render('index', { title: 'Travlr Getaways' });
+    pageTitle = packageJson.description + ' | Home';
+    res.render('index', { title: pageTitle });
 };
 
 module.exports = {
     index
-}
+};

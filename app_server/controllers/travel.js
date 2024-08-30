@@ -1,11 +1,11 @@
-require('dotenv').config();
+const packageJson = require('../../package.json');
 
-// Get travel view
+/* GET travel view. */
 const travel = (req, res) => {
-    pageTitle = process.env.npm_package_description + ' - Travel';
+    pageTitle = packageJson.description + ' | Travel';
     res.render('travel', { title: pageTitle });
 };
 
 module.exports = {
     travel
-}
+};
