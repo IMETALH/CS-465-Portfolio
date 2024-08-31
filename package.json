@@ -1,23 +1,44 @@
 {
-  "name": "travlr",
-  "version": "1.0.0",
-  "description": "Travlr Getaways",
-  "author": "SNHU Kennedy <kennedy.uzoho@snhu.edu",
+  "name": "cs-465-travlr-getaways",
+  "version": "4.0.0",
   "private": true,
+  "description": "Travlr Getaways",
+  "homepage": "https://github.com/kennedy-u/cs-465-Portfolio#readme",
+  "bugs": {
+    "url": "https://github.com/kennedy-u/CS-465-Portfolio/issues",
+    "email": "kennedy.uzoho@snhu.edu"
+  },
+  "license": "UNLICENSED",
+  "author": {
+    "name": "Kennedy Uzoho",
+    "email": "kennedy.uzoho@snhu.edu",
+    "url": "https://www.kennedy-u.dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kennedy-u/CS-465-Portfolio.git"
+  },
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "nodemon"
+  },
+  "engines": {
+    "node": ">= 0.10.0"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
+    "debug": "^4.3.4",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "supports-color": "^9.4.0",
     "express-generator": "^4.2.0",
+    "mkdirp": "3.0.1"
+  },
+  "devDependencies": {
     "hbs": "^4.2.0",
-    "http-errors": "~1.6.3",
-    "mkdirp": "3.0.1",
-    "mongoose": "^7.4.0",
-    "morgan": "~1.9.1",
+    "mongoose": "^5.9.0",
     "nodemon": "^3.0.1",
     "seedgoose": "^2.0.2"
   }
