@@ -1,13 +1,63 @@
-const fs = require('fs'); // filesystem
-const newsTypes = JSON.parse(fs.readFileSync('./data/news.json', 'utf8'));
-const newsLatest = JSON.parse(fs.readFileSync('./data/latest_news.json', 'utf8'));
-const newsVacation = JSON.parse(fs.readFileSync('./data/vacation_tips.json', 'utf8'));
+const fetch = require('node-fetch');
+const fs = require('fs');
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+const apiOptions = {
+    server: 'http://localhost:3000'
+}
 
-// GET Homepage
-const news = (req, res) => {
-    res.render('news', { title: 'Travlr Getaways', newsTypes, newsLatest, newsVacation });
+/* Render news list view */
+const renderNewsList = (req, res, responseBody) => {
+    let message = null;
+    let pageTitle = packageJson.description + ' | News';
+
+    if (!(responseBody instanceof Array)) {
+        message = 'API lookup error';
+        responseBody = [];
+    } else {
+        if (!responseBody.length) {
+            message = 'No news found in database';
+        }
+    }
+
+    const latestNews = responseBody.filter(news => news.code.includes('LATEST'));
+    const vacationTips = responseBody.filter(news => news.code.includes('TIPS'));
+    const featured = responseBody.filter(news => news.code.includes('FEATURED'))[0];
+
+    res.render('news', {
+        activePage: 'news',
+        title: pageTitle,
+        latestNews,
+        vacationTips,
+        featured,
+        message
+    });
+};
+
+/* GET news list. */
+const newsList = (req, res) => {
+    const path = '/api/news';
+    const url = `${apiOptions.server}${path}`;
+
+    console.log('>> newsController.newsList calling ' + url);
+    fetch(url)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
+        .then(body => {
+            let news = [];
+            if (body.length) {
+                news = body;
+            }
+            renderNewsList(req, res, news);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
 };
 
 module.exports = {
-    news
-}
+    newsList
+};
