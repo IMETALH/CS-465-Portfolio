@@ -78,21 +78,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "travlr-admin:build"
+            "buildTarget": "travlr-admin:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "travlr-admin:build:production"
+              "buildTarget": "travlr-admin:build:production"
             },
             "development": {
-              "browserTarget": "travlr-admin:build:development"
+              "buildTarget": "travlr-admin:build:development"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "travlr-admin:build"
+            "buildTarget": "travlr-admin:build"
           }
         },
         "test": {
@@ -112,5 +112,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

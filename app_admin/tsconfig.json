@@ -4,6 +4,14 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "types": [
+      "node",
+      "jest",
+      "rxjs"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
