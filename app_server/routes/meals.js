@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/meals');
+const controller= require('../controllers/meals');
 
-/* GET Meals page. */
-router.get('/', controller.meals);
+/* GET meals view. */
+router.get('/', controller.mealList);
 
 module.exports = router;
