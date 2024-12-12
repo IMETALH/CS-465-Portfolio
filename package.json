@@ -37,6 +37,7 @@
     "node-fetch": "^2.7.0",
     "prompt-sync": "^4.2.0",
     "request": "^2.88.2",
+    "rxjs": "^7.8.1",
     "supports-color": "^9.4.0"
   },
   "devDependencies": {
