@@ -1,41 +1,53 @@
 const express = require('express');
 const router = express.Router();
-//const { expressjwt: jwt } = require("express-jwt");
-const { expressjwt: expressJwt } = require('express-jwt');
 
-//const auth = jwt({
-const auth = expressJwt({
-    secret: process.env.JWT_SECRET,
-    userProperty: 'payload',
-    algorithms: ['HS256'] // Use 'HS512' algorithm
-});
+const mealsController = require('../controllers/meals');
+const newsController = require('../controllers/news');
+const roomsController = require('../controllers/rooms');
+const travelController = require('../controllers/travel');
 
-const authController = require('../controllers/authentication');
-const tripsController = require('../controllers/trips');
-
-
-
-// Define the routes for the API
-    // Route to authenticate a user
+// API routes
+// Route to get a list of all meals
 router
-    .route('/login')
-    .post(authController.login);
+    .route('/meals')
+    .get(mealsController.mealList);
 
-    // Route to register a user
+// Route to find and return a single meal by meal code
 router
-    .route('/register')
-    .post(authController.register);
+    .route('/meals/:mealCode')
+    .get(mealsController.mealsFindCode);
 
-    // Route to get all trips
+// Route to get a list of all news
+router
+    .route('/news')
+    .get(newsController.newsList);
+
+// Route to find and return a single news piece by news code
+router
+    .route('/news/:newsCode')
+    .get(newsController.newsFindCode);
+
+// Route to get a list of all rooms
+router
+    .route('/rooms')
+    .get(roomsController.roomList);
+
+// Route to find and return a single room by room code
+router
+    .route('/rooms/:roomCode')
+    .get(roomsController.roomsFindCode);
+
+// Route to get a list of all trips
 router
     .route('/trips')
-    .get(tripsController.tripsList)
-    .post(auth, tripsController.tripsAddTrip);
+    .get(travelController.tripList)
+    .post(travelController.tripsAddTrip);
 
-    // Route to get a specific trip
+// Route to find and return a single trip by trip code
 router
     .route('/trips/:tripCode')
-    .get(tripsController.tripsFindCode)
-    .put(auth, tripsController.tripsUpdateTrip);
+    .get(travelController.tripsFindCode)
+    .put(travelController.tripsUpdateTrip)
+    .delete(travelController.tripsDeleteTrip);
 
-module.exports = router; // Corrected export statement
+module.exports = router;

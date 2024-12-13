@@ -1,23 +1,19 @@
-/* Controller that creates API request and sends it off to the app_api, then gets a response back */
-
-const { response } = require('express');
 const request = require('request');
+const fs = require('fs');
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 const apiOptions = {
-    server: 'http://localhost:3000'
-}
+    server: 'http://localhost:3000' // Replace with your actual server URL
+};
 
-
-/* render travel list view */
-const renderTravelList = (req, res, responseBody) => {
+// render the trips list view
+const renderTripList = (req, res, responseBody) => {
     let message = null;
-    let pageTitle = process.env.npm_package_description + ' - Travel';
+    let pageTitle = packageJson.description + ' | Travel';
 
-    // if the result was not an array, make it an array and report error
     if (!(responseBody instanceof Array)) {
         message = 'API lookup error';
         responseBody = [];
-    }
-    else {
+    } else {
         if (!responseBody.length) {
             message = 'No trips exist in database';
         }
@@ -25,15 +21,15 @@ const renderTravelList = (req, res, responseBody) => {
 
     // render the page
     res.render('travel', {
+        activePage: 'travel',
         title: pageTitle,
         trips: responseBody,
         message
     });
 };
 
-
 /* GET travel list view */
-const travelList = (req, res) => {
+const tripList = (req, res) => {
     const path = '/api/trips';
     // construct the request
     const requestOptions = {
@@ -41,23 +37,21 @@ const travelList = (req, res) => {
         method: 'GET',
         json: {},
     };
-
     console.info('>> travelController.travelList calling ' + requestOptions.url);
 
-    // send the request to the api and get a response. Use the response to render the travel page
+    // make the request
     request(
         requestOptions,
         (err, { statusCode }, body) => {
             if (err) {
                 console.error(err);
             }
-            console.log('statusCode: ', response && response.statusCode)
-            renderTravelList(req, res, body);
+            console.log('statusCode: ', statusCode);
+            renderTripList(req, res, body);
         }
-    )
+    );
 };
 
-
 module.exports = {
-    travelList
-}
+    tripList
+};
