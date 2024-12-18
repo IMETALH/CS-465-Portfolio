@@ -1,12 +1,29 @@
 const express = require('express');
 const router = express.Router();
+const { expressjwt: expressJwt } = require('express-jwt');
 
+const auth = expressJwt({
+    secret: process.env.JWT_SECRET,
+    userProperty: "payload",
+    algorithms: ["HS256"],
+});
+
+const authController = require('../controllers/authentication');
 const mealsController = require('../controllers/meals');
 const newsController = require('../controllers/news');
 const roomsController = require('../controllers/rooms');
 const travelController = require('../controllers/travel');
 
 // API routes
+// Route to authenticate a user
+router
+    .route('/login')
+    .post(authController.login);
+
+// Route to register a new user
+router
+    .route('/register')
+    .post(authController.register);
 // Route to get a list of all meals
 router
     .route('/meals')
@@ -41,13 +58,13 @@ router
 router
     .route('/trips')
     .get(travelController.tripList)
-    .post(travelController.tripsAddTrip);
+    .post(auth, travelController.tripsAddTrip);
 
 // Route to find and return a single trip by trip code
 router
     .route('/trips/:tripCode')
     .get(travelController.tripsFindCode)
-    .put(travelController.tripsUpdateTrip)
-    .delete(travelController.tripsDeleteTrip);
+    .put(auth, travelController.tripsUpdateTrip)
+    .delete(auth, travelController.tripsDeleteTrip);
 
 module.exports = router;

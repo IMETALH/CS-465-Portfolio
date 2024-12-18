@@ -67,3 +67,4 @@ require('./models/meals');
 require('./models/news');
 require('./models/rooms');
 require('./models/trips');
+require('./models/user');

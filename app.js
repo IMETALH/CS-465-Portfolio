@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -7,6 +9,8 @@ const logger = require('morgan');
 const hbs = require('hbs');
 // set up database connection
 require('./app_api/database/db');
+// set up passport path for user authentication
+require('./app_api/config/passport');
 
 // set up routers
 const indexRouter = require('./app_server/routes/index');
@@ -18,6 +22,7 @@ const mealsRouter = require('./app_server/routes/meals');
 const newsRouter = require('./app_server/routes/news');
 const roomsRouter = require('./app_server/routes/rooms');
 const apiRouter = require('./app_api/routes/index');
+const passport = require('passport');
 
 const app = express();
 
@@ -33,12 +38,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
 
 // allow CORS (Cross-Origin Resource Sharing) for API routes
 app.use('/api', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requesteed-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header(
+    'Access-Control-Allow-Origin',
+    'http://localhost:4200'
+  );
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin,X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, DELETE'
+  );
   next();
 });
 
@@ -52,6 +67,17 @@ app.use('/news', newsRouter);
 app.use('/rooms', roomsRouter);
 app.use('/travel', travelRouter);
 app.use('/api', apiRouter);
+
+// Catch unauthorized user errors
+app.use((err, req, res, next) => {
+  if (err.name === "UnauthorizedError") {
+    res
+      .status(401)
+      .json({
+        message: `${err.name}: ${err.message}`
+      });
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
