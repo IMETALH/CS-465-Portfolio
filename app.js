@@ -68,7 +68,7 @@ app.use('/rooms', roomsRouter);
 app.use('/travel', travelRouter);
 app.use('/api', apiRouter);
 
-// Catch unauthorized user errors
+// Catch unauthorized user errors (global error handler)
 app.use((err, req, res, next) => {
   if (err.name === "UnauthorizedError") {
     res

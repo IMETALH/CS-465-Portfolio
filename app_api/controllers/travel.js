@@ -44,9 +44,14 @@ const tripsFindCode = async (req, res) => {
 };
 
 const tripsAddTrip = async (req, res) => {
-    getUser(req, res, (req, res) => {
-    tripModel
-        .create({
+    try {
+        // Ensure that the user is authenticated (getUser should attach user info to req.user)
+        if (!req.user) {
+            return res.status(401).json({ message: "Unauthorized: User not authenticated." });
+        }
+
+        // Create the trip using the validated data from the request
+        const trip = await tripModel.create({
             code: req.body.code,
             name: req.body.name,
             length: req.body.length,
@@ -54,23 +59,21 @@ const tripsAddTrip = async (req, res) => {
             resort: req.body.resort,
             perPerson: req.body.perPerson,
             image: req.body.image,
-            description: req.body.description
-        },
-            (err, trip) => {
-                if (err) {
-                    return res
-                        .status(400)  // bad request, invalid content
-                        .json(err);
-                } else {
-                    return res
-                        .status(201) // created
-                        .json(trip);
-                }
-            });
-        }
-    )
-    
-}
+            description: req.body.description,
+        });
+
+        return res.status(201).json(trip); // Success, trip created
+    } catch (err) {
+        console.error("Error adding trip:", err);
+
+        // Handle validation errors or other issues
+        return res.status(400).json({
+            message: "Error adding trip",
+            error: err.message || err,
+        });
+    }
+};
+
 
 // PUT: Update a single trip by tripCode
 const tripsUpdateTrip = async (req, res) => {
