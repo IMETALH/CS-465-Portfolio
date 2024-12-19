@@ -1,11 +1,12 @@
-<!-- <pre>{{ trips | json }}</pre> -->
-
-<div *ngIf="isLoggedIn()" class="container">
+<!-- Add Button -->
+<div *ngIf="isLoggedIn()" class="container mb-4">
     <button (click)="addTrip()" class="btn btn-info">Add Trip</button>
-</div>
-
-<div class="row">
-    <div *ngFor="let trip of trips">
-        <app-trip-card [trip]="trip" class="card-deck mt-2"></app-trip-card>
-        </div>
+  </div>
+  
+  <!-- Card Grid -->
+  <div class="d-flex flex-wrap justify-content-center">
+    <div *ngFor="let trip of trips" class="m-3">
+      <app-trip-card [trip]="trip" class="card-deck"></app-trip-card>
     </div>
+  </div>
+  
