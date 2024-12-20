@@ -1,56 +1,58 @@
-# cs465-fullstack
-CS-465 Full Stack Development with MEAN Stack
+# CS-465-Portfolio
+CS-465 Full Stack Development I.
 
+- Code
+  - [Application Backend Server](../app_server/)
+  - [Application APIs](../app_api/)
+  - [Application Admin Portal](../app_admin/)
+- Assignments
+  - [Software Design Document](Software%20Design%20Document.pdf)
+  - [Project Reflection](#project-reflection)
+    - [Architecture](#architecture)
+    - [Functionality](#functionality)
+    - [Testing](#testing)
+    - [Reflection](#reflection)
 
-## Architecture
-The frontend development technology stack used in the full stack project includes Express HTML, Angular, JavaScript, MongoDB, and the single-page application (SPA)
+## Project Reflection
 
-### Express HTML vs. JavaScript
+### Architecture
 
-Express HTML focuses on server-side rendering and content structure.
-JavaScript focuses on client-side interactivity, dynamic updates, and asynchronous data handling..
-They worked together, with Express rendering initial content and JavaScript enhancing user interaction.
+#### Compare and contrast the types of frontend development you used in your full stack project, including Express, HTML, JavaScript, and the single-page application (SPA)
 
-### JavaScript vs. Single-Page Application (SPA)
-JavaScript and SPAs.
-SPAs take JavaScript usage further by creating a seamless user experience without full page reloads.
-SPAs rely heavily on JavaScript frameworks to manage complex UI components and handle dynamic updates.
+One part of the site used Express, HTML, and JavaScript to display web pages. Routes and controllers were created with Express and JavaScript to handle browser requests for specific pages. Express would then either serve static HTML files or dynamically generate pages using Handlebars templates, which were populated with data retrieved from the database. These tools worked together seamlessly to process server requests and deliver the appropriate content to the frontend.
 
-MongoDB was used for various reasons.
-The flexibility of Schema:
-MongoDB is a schema-less database, which means that it doesn't require a predefined schema for data storage. This flexibility is particularly useful when dealing with rapidly evolving data models or projects where the structure of data might change frequently. MongoDB is very scalability and it is a Document-Oriented Model: MongoDB uses a document-oriented data model, where data is stored in JSON-like documents. This closely resembles the data structures used in modern programming languages, making it intuitive for developers to work with. It's especially beneficial when dealing with complex or nested data used like the data used in this project.
+The Angular portion of the project functioned differently. On the initial load, the entire single-page application (SPA) was sent to the client. Once loaded, all rendering and code execution occurred on the client side within the browser, with calls to the backend made only when data needed to be fetched from the database.
 
-Aggregation Framework: MongoDB's aggregation framework provides powerful tools for performing complex data manipulations, transformations, and aggregations within the database. This can improve performance by reducing the amount of data transferred between the database and the application.
+With Express, server calls were made frequently, as each page load or refresh required fetching the relevant resources from the server. In contrast, with the SPA, the initial load time was longer because all necessary assets were fetched at once from the backend. However, after that first load, no additional server requests were required for navigation between pages within the SPA.
 
-Support for Unstructured Data: MongoDB's ability to handle unstructured or semi-structured data is advantageous for data that doesn't fit neatly into a tabular structure. This can include data like text, images, or geospatial information.
+#### Why did the backend use a NoSQL MongoDB database?
 
-Real-time Data Processing: MongoDB's support for real-time data processing and change streams allows applications to react to data changes as they happen. This is particularly valuable for building features like real-time notifications or live updates.
+Because MongoDB is highly scalable and supports fast querying. Its document-based storage structure closely aligns with JSON formatting, making it an excellent choice for integration with frontend applications.
 
-Developer Productivity: MongoDB's query language and APIs are developer-friendly, allowing for quick and easy retrieval and manipulation of data. This sped up development and iteration cycles.
+### Functionality
 
-Adoption in Modern Tech Stacks: MongoDB is widely used in modern tech stacks, and its popularity means that there's a good chance that developers working on the project are familiar with it.
+#### How is JSON different from JavaScript and how does JSON tie together the frontend and backend development pieces?
 
+JSON is a standardized format for structuring data that can be utilized across various programming languages. In JavaScript, JSON is commonly used to define objects. It plays a crucial role in connecting the frontend and backend through APIs. RESTful APIs, in particular, rely on JSON to handle requests and deliver responses, enabling seamless communication between the client and server.
 
-## Functionality
-JSON (JavaScript Object Notation) and JavaScript are related concepts, but they serve different purposes and are used in different contexts in these projects. JSON is a lightweight data-interchange format that is easy for both humans and machines to read and write. It is used to represent structured data in a text format. JSON is language-independent, meaning it can be used with many programming languages, not just JavaScript.
+#### Provide instances in the full stack process when you refactored code to improve functionality and efficiencies and name the benefits that come from reusable user interface (UI) components
 
-JavaScript is a versatile programming language used primarily for creating interactive and dynamic content on web pages. It is commonly used in front-end development to enhance user experience through animations, interactivity, and client-side logic.
+One example of enhancing functionality through refactoring was replacing certain static HTML pages with dynamic templates created using Handlebars. This approach enabled the reuse of a consistent page structure while allowing the displayed content to be updated dynamically. Another improvement involved migrating the content used to populate these templates from static JSON files stored in the codebase to a MongoDB database. This change made it possible to add or modify content data without needing to redeploy the website or make changes to the codebase.
 
-Code Refactoring for Improved Efficiency: Some API endpoint is being called multiple times with similar parameters, leading to redundant data retrieval and slowing down the application. I refactored the code to implement caching for the API responses. I used a caching library to store the fetched data temporarily and retrieve it from the cache when the same request is made again within a certain timeframe. I also refactored the function into smaller, more focused functions with descriptive names. Each subtask is encapsulated within a separate function.
+### Testing
 
-## Testing: API Testing and Security Challenges
-Methods and Endpoints: An API defines how different software components or systems communicate with each other.
-Methods (HTTP Verbs):
-HTTP methods, also known as HTTP verbs, define the type of operation that a client wants to perform on a resource. Common HTTP methods include:
-GET: Retrieve data from the server.
-POST: Send data to the server to create a new resource.
-PUT: Update an existing resource on the server.
-DELETE: Delete a resource on the server.
+Request and retrieval methods require thorough API endpoint testing, which becomes more complex when additional layers of security like JWT are involved.
 
-Unit Testing: Tested individual API methods to ensure they behave as expected. For example, test that a "POST" request to a certain endpoint creates a new resource.
+#### Explain your understanding of methods, endpoints, and security in a full stack application
 
-Integration Testing:
-Tested the interactions between different components or systems to ensure they work seamlessly together. For example, test whether authentication and authorization mechanisms are functioning correctly.
+HTTP methods define the types of interactions a client can have with a server. Common HTTP methods include GET, POST, PUT, and DELETE. These methods are used by clients to communicate with the server via API endpoints. In the context of this full-stack application, security involved authenticating users and providing them with a valid JSON Web Token (JWT), enabling them to access certain protected endpoints.
 
-Mocking and Faking:
-Use mock data or mock services to simulate interactions and responses for APIs that are not fully developed or are dependent on external services.
+### Reflection
+
+#### How has this course helped you in reaching your professional goals?
+
+This course has provided me with valuable insights into how full-stack applications are designed and built. Throughout the course, I was continuously introduced to the principles of web development and the full-stack application development process. I gained experience working with essential web technologies, including the Express and Angular frameworks, as well as MongoDB. As I continue my journey toward becoming a professional full-stack software developer, I believe the work I completed during this course will serve as a strong foundation for future projects, where I can apply similar frameworks and methodologies demonstrated in this course.  
+
+#### What skills have you learned, developed, or mastered in this course to help you become a more marketable candidate in your career field?
+
+This course has significantly enhanced my JavaScript skills through hands-on practice. It also provided me with the opportunity to use JavaScript on the backend with Node.js and Express. Given that knowledge of Node.js is frequently listed as a required or preferred skill in many job postings, I am glad to have gained a solid understanding of this in-demand technology.
