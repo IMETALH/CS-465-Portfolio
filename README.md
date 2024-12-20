@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # CS-465-Portfolio
 CS-465 Full Stack Development I.
 
@@ -57,7 +56,4 @@ This course has provided me with valuable insights into how full-stack applicati
 #### What skills have you learned, developed, or mastered in this course to help you become a more marketable candidate in your career field?
 
 This course has significantly enhanced my JavaScript skills through hands-on practice. It also provided me with the opportunity to use JavaScript on the backend with Node.js and Express. Given that knowledge of Node.js is frequently listed as a required or preferred skill in many job postings, I am glad to have gained a solid understanding of this in-demand technology.
-=======
-# CS465-Fullstack
-CS-465 Full Stack Development with MEAN
->>>>>>> module7
+
