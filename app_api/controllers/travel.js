@@ -45,30 +45,33 @@ const tripsFindCode = async (req, res) => {
 
 const tripsAddTrip = async (req, res) => {
     try {
-        // Ensure that the user is authenticated (getUser should attach user info to req.user)
-        if (!req.user) {
-            return res.status(401).json({ message: "Unauthorized: User not authenticated." });
-        }
+        console.log('Attempting to add a trip with the following data:', req.body);
 
-        // Create the trip using the validated data from the request
-        const trip = await tripModel.create({
-            code: req.body.code,
-            name: req.body.name,
-            length: req.body.length,
-            start: req.body.start,
-            resort: req.body.resort,
-            perPerson: req.body.perPerson,
-            image: req.body.image,
-            description: req.body.description,
+        // Ensure the user is authenticated using getUser
+        getUser(req, res, async () => {
+            // Create the trip using the validated data from the request
+            const trip = await tripModel.create({
+                code: req.body.code,
+                name: req.body.name,
+                length: req.body.length,
+                start: req.body.start,
+                resort: req.body.resort,
+                perPerson: req.body.perPerson,
+                image: req.body.image,
+                description: req.body.description,
+            });
+
+            console.log('Trip added successfully:', trip);
+
+            // Respond with the created trip
+            return res.status(201).json(trip);
         });
-
-        return res.status(201).json(trip); // Success, trip created
     } catch (err) {
-        console.error("Error adding trip:", err);
+        console.error('Error adding trip:', err);
 
         // Handle validation errors or other issues
         return res.status(400).json({
-            message: "Error adding trip",
+            message: 'Error adding trip',
             error: err.message || err,
         });
     }
@@ -171,28 +174,22 @@ const tripsDeleteTrip = async (req, res) => {
 const getUser = (req, res, callback) => {
     if (req.auth && req.auth.email) {
         userModel
-            .findOne({
-                email: req.auth.email
-            })
+            .findOne({ email: req.auth.email })
             .exec((err, user) => {
                 if (!user) {
-                    return res
-                        .status(404)
-                        .json({ message: 'User not found' });
+                    return res.status(404).json({ message: 'User not found' });
                 } else if (err) {
-                    console.log(err);
-                    return res
-                        .status(404)
-                        .json(err);
+                    console.error('Error finding user:', err);
+                    return res.status(500).json(err);
                 }
-                callback(req, res, user.name);
+                req.user = user; // Attach user object to req for further use
+                callback();
             });
     } else {
-        return res
-            .status(404)
-            .json({ message: 'User not found' });
+        return res.status(401).json({ message: 'Unauthorized: User not authenticated' });
     }
 };
+
 
 module.exports = {
     tripList,

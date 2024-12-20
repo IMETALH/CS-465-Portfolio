@@ -34,7 +34,7 @@ export class AddTripComponent implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-
+  
     if (this.addTripForm.valid) {
       this.tripService.addTrip(this.addTripForm.value).subscribe({
         next: (data) => {
@@ -42,12 +42,17 @@ export class AddTripComponent implements OnInit {
           this.router.navigate(['']);
         },
         error: (err) => {
-          console.error('Error adding trip:', err);
+          if (err.status === 401) {
+            alert('Unauthorized: Please log in again.');
+            this.router.navigate(['/login']);
+          } else {
+            console.error('Error adding trip:', err);
+          }
         },
       });
     }
-  }
-
+  }  
+  
   // Access form fields
   get f() {
     return this.addTripForm.controls;

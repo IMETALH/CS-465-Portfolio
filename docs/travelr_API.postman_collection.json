@@ -1,0 +1,278 @@
+{
+	"info": {
+		"_postman_id": "ae922b30-3e26-49fd-8139-9c19038ae787",
+		"name": "travelr_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40014335"
+	},
+	"item": [
+		{
+			"name": "userRegister",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "wp@snhu.edu",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "rapssd333chh@!",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "wat rss",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{travlr_host}}/api/register",
+					"host": [
+						"{{travlr_host}}"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userLogin",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "wp@snhu.edu",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "rapssd333chh@!",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{travlr_host}}/api/login",
+					"host": [
+						"{{travlr_host}}"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTripByCode",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "{{travlr_host}}/api/trips/{{tripCode}}",
+					"host": [
+						"{{travlr_host}}"
+					],
+					"path": [
+						"api",
+						"trips",
+						"{{tripCode}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTrips",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{travlr_host}}/api/trips/",
+					"host": [
+						"{{travlr_host}}"
+					],
+					"path": [
+						"api",
+						"trips",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addTrip",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "code",
+							"value": "SD343EFFRFR",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Try AfK",
+							"type": "text"
+						},
+						{
+							"key": "length",
+							"value": "6 nights / 7 days",
+							"type": "text"
+						},
+						{
+							"key": "start",
+							"value": "2024-01-19T08:00:00Z",
+							"type": "text"
+						},
+						{
+							"key": "resort",
+							"value": "BASSS",
+							"type": "text"
+						},
+						{
+							"key": "perPerson",
+							"value": "200",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "reef3.jpg",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "<p>Dawson's...integer magna leo, posuere et dignissim vitae, porttitor at odio. Pellentesque a metus nec magna placerat volutpat. Nunc nisi mi, elementum sit amet aliquet quis, tristique quis nisl. Curabitur odio lacus, blandit ut hendrerit</p><p>vulputate, vulputate at est. Morbi aliquet viverra metus eu consectetur. In lorem dui, elementum sit amet convallis ac, tincidunt vel sapien.</p>",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{travlr_host}}/api/trips/",
+					"host": [
+						"{{travlr_host}}"
+					],
+					"path": [
+						"api",
+						"trips",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTrip",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{travlr_host}}/api/trips/HDDER202214",
+					"host": [
+						"{{travlr_host}}"
+					],
+					"path": [
+						"api",
+						"trips",
+						"HDDER202214"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "travelr_host",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "tripCode",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

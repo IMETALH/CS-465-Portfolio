@@ -3,7 +3,6 @@
     display: flex; /* Enable flexbox */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    height: 100vh; /* Full viewport height for vertical centering */
     margin: 0; /* Remove default margin */
   }
   
@@ -11,9 +10,9 @@
   .row-cols-md-18 {
     width: 100%; /* Full width on smaller screens */
     max-width: 600px; /* Limit maximum width */
-    padding: 1.5rem; /* Add padding for better spacing */
+    padding: 2.0rem; /* Add padding for better spacing */
     background-color: #f8f9fa; /* Optional: Light background */
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 16px; /* Rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
   }
   

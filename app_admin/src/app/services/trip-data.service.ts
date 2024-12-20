@@ -20,8 +20,19 @@ export class TripDataService {
 
   public addTrip(formData: Trip): Observable<Trip> {
     console.log('Inside TripDataService#addTrip');
-    return this.httpClient.post<Trip>(this.tripUrl, formData); // Return Observable directly
+  
+    // Retrieve the token from storage
+    const token = this.storage.getItem('authToken'); // Ensure the token is correctly stored and accessible
+  
+    // Add the Authorization header
+    const headers = {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    };
+  
+    return this.httpClient.post<Trip>(this.tripUrl, formData, { headers });
   }
+  
 
   public getTrip(tripCode: string): Observable<Trip> {
     console.log('Inside TripDataService#getTrip');
