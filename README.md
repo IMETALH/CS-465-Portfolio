@@ -6,7 +6,7 @@ CS-465 Full Stack Development I.
   - [Application APIs](./app_api/)
   - [Application Admin Portal](./app_admin/)
 - Assignments
-  - [Software Design Document](Software%20Design%20Document.pdf)
+  - [Software Design Document](CS%20465%20Software%20Design%20Document.pdf)
   - [Project Reflection](#project-reflection)
     - [Architecture](#architecture)
     - [Functionality](#functionality)
