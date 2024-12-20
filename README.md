@@ -2,9 +2,9 @@
 CS-465 Full Stack Development I.
 
 - Code
-  - [Application Backend Server](../app_server/)
-  - [Application APIs](../app_api/)
-  - [Application Admin Portal](../app_admin/)
+  - [Application Backend Server](./app_server/)
+  - [Application APIs](./app_api/)
+  - [Application Admin Portal](./app_admin/)
 - Assignments
   - [Software Design Document](Software%20Design%20Document.pdf)
   - [Project Reflection](#project-reflection)
