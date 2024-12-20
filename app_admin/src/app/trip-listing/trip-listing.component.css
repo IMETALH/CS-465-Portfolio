@@ -1,0 +1,19 @@
+/* Parent container for centering */
+.d-flex {
+    display: flex;
+    flex-wrap: wrap; /* Allows the cards to wrap if there's not enough space */
+    justify-content: center; /* Horizontally centers the cards */
+    align-items: flex-start; /* Aligns cards to the top */
+    margin-top: 1rem; /* Optional: Adds spacing from the top */
+  }
+  
+  /* Adjust individual card spacing */
+  .card-deck {
+    margin: 0rem; /* Adds spacing between cards */
+  }
+  
+  /* Additional spacing between rows of cards */
+  .m-3 {
+    margin: 0rem; /* Fine-tune margin if needed */
+  }
+  

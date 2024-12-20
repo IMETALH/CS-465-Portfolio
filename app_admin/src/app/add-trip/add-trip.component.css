@@ -1,0 +1,26 @@
+/* Centering the edit form */
+.row {
+  display: flex; /* Enable flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin: 0; /* Remove default margin */
+}
+
+/* Adjust the container holding the form */
+.row-cols-md-18 {
+  width: 100%; /* Full width on smaller screens */
+  max-width: 600px; /* Limit maximum width */
+  padding: 2.0rem; /* Add padding for better spacing */
+  background-color: #f8f9fa; /* Optional: Light background */
+  border-radius: 16px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for depth */
+}
+
+/* Style adjustments for form inputs and buttons */
+.form-control {
+  margin-bottom: 0.2rem; /* Space between inputs */
+}
+
+button {
+  width: 100%; /* Adjust button width for equal spacing */
+}

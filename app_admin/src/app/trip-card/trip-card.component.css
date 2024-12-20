@@ -1,0 +1,28 @@
+/* Centering the cards */
+.d-flex {
+  justify-content: center; /* Centers the cards horizontally */
+}
+
+/* Ensure closer card spacing */
+.trip-card {
+  width: 18rem;
+  margin: 0rem; /* Reduced space between cards */
+  line-height: normal;
+}
+
+/* Optional: Customize the card header */
+.trip-card .card-header {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+/* Optional: Padding for the card body */
+.trip-card .card-body {
+  padding: 1rem;
+}
+
+/* Align footer content */
+.trip-card .card-footer {
+  text-align: right;
+  padding: 0.5rem;
+}

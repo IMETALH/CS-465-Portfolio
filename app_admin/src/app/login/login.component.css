@@ -1,0 +1,25 @@
+.hide-alert {
+  display: none;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  margin-bottom: 15px;
+}
+
+
+/* Centering the login form */
+.row {
+display: flex; /* Enable flexbox */
+justify-content: center; /* Center horizontally */
+align-items: center; /* Center vertically */
+margin: 0; /* Remove default margin */
+}
+
+/* Style adjustments for form inputs and button */
+.form-control {
+margin-bottom: 1rem; /* Space between inputs */
+}
+

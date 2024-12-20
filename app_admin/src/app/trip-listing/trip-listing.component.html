@@ -1,0 +1,12 @@
+<!-- Add Button -->
+<div *ngIf="isLoggedIn()" class="container mb-4">
+    <button (click)="addTrip()" class="btn btn-info">Add Trip</button>
+  </div>
+  
+  <!-- Card Grid -->
+  <div class="d-flex flex-wrap justify-content-center">
+    <div *ngFor="let trip of trips" class="m-3">
+      <app-trip-card [trip]="trip" class="card-deck"></app-trip-card>
+    </div>
+  </div>
+  
